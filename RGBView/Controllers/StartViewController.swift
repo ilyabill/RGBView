@@ -9,27 +9,27 @@ import UIKit
 
 class StartViewController: UIViewController {
     
-    var colorModel  = ColorModel(red: 0.7, green: 0.2, blue: 0.5)
+    var backColor  = CIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
 
     
     override func viewWillAppear(_ animated: Bool) {
-        view.backgroundColor = colorModel.getColor()
+        view.backgroundColor = UIColor(ciColor: backColor)
     }
 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let navigationVC = segue.destination as? UINavigationController else { return }
         let settingsVC = navigationVC.topViewController as! SettingsViewController
-        settingsVC.colorModel = colorModel
+        settingsVC.backColor = backColor
         settingsVC.delegate = self
     }
 }
     
 
     extension StartViewController: SettingsViewControllerDelegate {
-        func updateColorModel(_ color: ColorModel) {
-            colorModel = color
-            view.backgroundColor = colorModel.getColor()
+        func updateColorModel(_ color: CIColor) {
+            backColor = color
+            view.backgroundColor = UIColor(ciColor: backColor)
         }
     }
     
@@ -37,5 +37,5 @@ class StartViewController: UIViewController {
     
 protocol SettingsViewControllerDelegate {
     
-        func updateColorModel(_ color: ColorModel)
+        func updateColorModel(_ color: CIColor)
     }

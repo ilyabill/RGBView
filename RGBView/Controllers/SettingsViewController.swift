@@ -22,15 +22,22 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     
-    var colorModel: ColorModel!
+    var backColor: CIColor!
+    var red: CGFloat!
+    var green: CGFloat!
+    var blue: CGFloat!
+    
     var delegate: SettingsViewControllerDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         redTextField.delegate = self
         greenTextField.delegate = self
         blueTextField.delegate = self
+          
+        red = backColor.red
+        green = backColor.green
+        blue = backColor.blue
         
         updateUI()
         
@@ -47,16 +54,17 @@ class SettingsViewController: UIViewController {
     
     @IBAction func sliderAction() {
         
-        colorModel.red = round(100 * redSlider.value) / 100
-        colorModel.green = round(100 * greenSlider.value) / 100
-        colorModel.blue = round(100 * blueSlider.value) / 100
+        red = CGFloat(round(100 * redSlider.value) / 100)
+        green = CGFloat(round(100 * greenSlider.value) / 100)
+        blue = CGFloat(round(100 * blueSlider.value) / 100)
+        backColor = CIColor(red: red, green: green, blue: blue, alpha: 1)
         
         updateUI()
         
     }
     
     @IBAction func saveColorPressed(_ sender: UIBarButtonItem) {
-        delegate.updateColorModel(colorModel)
+        delegate.updateColorModel(backColor)
         dismiss(animated: true, completion: nil)
     }
     
@@ -67,15 +75,19 @@ class SettingsViewController: UIViewController {
     
     
     private func updateUI() {
-        redSlider.value = colorModel.red
-        greenSlider.value = colorModel.green
-        blueSlider.value = colorModel.blue
+        let red = Float(backColor.red)
+        let green = Float(backColor.green)
+        let blue = Float(backColor.blue)
         
-        redTextField.text = String(colorModel.red).replacingOccurrences(of: ".", with: ",")
-        greenTextField.text = String(colorModel.green).replacingOccurrences(of: ".", with: ",")
-        blueTextField.text = String(colorModel.blue).replacingOccurrences(of: ".", with: ",")
+        redSlider.value = red
+        greenSlider.value = green
+        blueSlider.value = blue
         
-        colorView.backgroundColor = colorModel.getColor()
+        redTextField.text = String(red).replacingOccurrences(of: ".", with: ",")
+        greenTextField.text = String(green).replacingOccurrences(of: ".", with: ",")
+        blueTextField.text = String(blue).replacingOccurrences(of: ".", with: ",")
+        
+        colorView.backgroundColor = UIColor(ciColor: backColor)
     }
     
     
@@ -88,30 +100,31 @@ extension SettingsViewController: UITextFieldDelegate{
         guard let value = textField.text?.replacingOccurrences(of: ",", with: ".") else { return }
         
         guard let newValue = Float(value) else {
-            textField.text = nil
+            textField.text = "0"
             showAllert(title: "неверное значение", message: "пожалуйста введите число от 0 до 1")
             return
         }
         
         guard newValue >= 0 && newValue <= 1 else {
-            textField.text = nil
+            textField.text = "0"
             showAllert(title: "неверное значение", message: "пожалуйста введите число от 0 до 1")
             return
         }
         
-        switch textField {
-        case redTextField:
-            redSlider.value = newValue
-            colorModel.red = newValue
-        case greenTextField:
-            greenSlider.value = newValue
-            colorModel.green = newValue
-        case blueTextField:
-            blueSlider.value = newValue
-            colorModel.blue = newValue
+        switch textField.tag {
+        case 0:
+            red = CGFloat(newValue)
+        case 1:
+            green = CGFloat(newValue)
+        case 2:
+            blue = CGFloat(newValue)
         default:
             break
         }
+        backColor = CIColor(red: red, green: green, blue: blue, alpha: 1)
+        
+
+        
         
         updateUI()
         

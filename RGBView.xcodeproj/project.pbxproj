@@ -13,7 +13,6 @@
 		10CB06602763B1290078A437 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10CB065E2763B1290078A437 /* Main.storyboard */; };
 		10CB06622763B1290078A437 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10CB06612763B1290078A437 /* Assets.xcassets */; };
 		10CB06652763B1290078A437 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10CB06632763B1290078A437 /* LaunchScreen.storyboard */; };
-		10E7DA22277745FB0078AB4A /* ColorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E7DA21277745FB0078AB4A /* ColorModel.swift */; };
 		10E7DA24277746440078AB4A /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E7DA23277746440078AB4A /* StartViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,7 +25,6 @@
 		10CB06612763B1290078A437 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		10CB06642763B1290078A437 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		10CB06662763B1290078A437 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		10E7DA21277745FB0078AB4A /* ColorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorModel.swift; sourceTree = "<group>"; };
 		10E7DA23277746440078AB4A /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,7 +90,6 @@
 		10E7DA27277746690078AB4A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				10E7DA21277745FB0078AB4A /* ColorModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -172,7 +169,6 @@
 				10CB065D2763B1290078A437 /* SettingsViewController.swift in Sources */,
 				10CB06592763B1290078A437 /* AppDelegate.swift in Sources */,
 				10CB065B2763B1290078A437 /* SceneDelegate.swift in Sources */,
-				10E7DA22277745FB0078AB4A /* ColorModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
